@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { motion } from "framer-motion"
 import { CardBody } from '@material-tailwind/react';
 
@@ -6,6 +6,10 @@ import { CardBody } from '@material-tailwind/react';
 
 function App() {
   const [occupied, setOccupied] = useState(false)
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/room?building=ecsw&room=1.123&occupied=${occupied}`)
+  }, [occupied])
   
   return (
     <div id='container' className={`flex align-center justify-center bg-gradient-to-tr ${occupied ? "to-[#ffbb00] from-[#fd7700]" : "to-[#24bb8b] from-[#154734]"} w-screen h-screen`}>
